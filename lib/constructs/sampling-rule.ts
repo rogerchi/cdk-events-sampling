@@ -31,7 +31,10 @@ export class SamplingRule extends Rule {
     if (percentage >= 1 || percentage <= 0) {
       throw new Error('Percentage must be between 0 and 1');
     }
+    // Get the first three significant hex digits from the percentage
     const hexString = percentage.toString(16).slice(0, 5).slice(-3);
+
+    // Build up list of prefixes, starting from most significant digit
     let prefixes: string[] = [];
     let a;
     for (a = 0x0; a < parseInt(hexString[0], 16); a++) {
